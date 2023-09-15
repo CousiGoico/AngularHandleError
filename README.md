@@ -14,15 +14,15 @@ Este proyecto muestra como gestionar errores y enviarlos a Azure Application Ins
 
 En este proyecto hemos instalado las siguientes librerias:
 
-- [Material]()
+- [Material](https://www.npmjs.com/package/@angular/material)
 
             npm install @angular/material
 
-- [Application Insights Angular Plugin]()
+- [Application Insights Angular Plugin](https://www.npmjs.com/package/@microsoft/applicationinsights-angularplugin-js)
 
             npm install @microsoft/applicationinsight-angularplugin-js
 
-- [Application Insights Web]()
+- [Application Insights Web](https://www.npmjs.com/package/@microsoft/applicationinsights-web)
 
             npm install @microsoft/applicationinsight-web
 
