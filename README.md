@@ -1,27 +1,51 @@
 # AngularHandleError
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
 
-## Development server
+Este proyecto muestra como gestionar errores y enviarlos a Azure Application Insights en Angular.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Comandos para generar el proyecto
 
-## Code scaffolding
+            ng new {nombre_proyecto} --no-create-application
+            ng new generate application app-web
+            ng new generate library app-lib
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Librerias
 
-## Build
+En este proyecto hemos instalado las siguientes librerias:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Material]()
 
-## Running unit tests
+            npm install @angular/material
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Application Insights Angular Plugin]()
 
-## Running end-to-end tests
+            npm install @microsoft/applicationinsight-angularplugin-js
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [Application Insights Web]()
 
-## Further help
+            npm install @microsoft/applicationinsight-web
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Servicios
+
+### HandleError
+
+Servicio personalizado que hereda de HandleError del modulo @angular/core. Este servicio será el encargado de llamar al servicio Insights para registrar el error en Azure Application Insights. Es necesario poner nuestro servicio como proveedor en el fichero app.module.ts. 
+
+            @NgModule({
+                declarations: [
+                    AppComponent
+                ],
+                imports: [
+                    BrowserModule,
+                    AppRoutingModule,
+                    MatButtonModule
+                ],
+                providers: [{ provide: ErrorHandler, useClass: ErrorHandleService}],
+                bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+
+### Insights
+
+Este servicio se conecta con el servicio Application Insights de Azure para proporcionar métodos de registro de logs, trazas, metricas y excepciones. 
